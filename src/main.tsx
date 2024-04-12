@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Connect
       authOptions={{
         appDetails: {
-          name: "Stacks React Template",
+          name: "Memegoat Locker Tester",
           icon: window.location.origin + "/logo.png",
         },
         redirectTo: "/",
