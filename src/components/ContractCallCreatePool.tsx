@@ -1,20 +1,19 @@
 import { useConnect } from "@stacks/connect-react";
-import { StacksTestnet, } from "@stacks/network";
 import {
     AnchorMode,
     PostConditionMode,
     uintCV,
     standardPrincipalCV,
     contractPrincipalCV,
-    // boolCV,
-    someCV
+    someCV,
 } from "@stacks/transactions";
 import { userSession } from "../user-session";
+import { network } from "../network";
 
 const ContractCallCreatePool = () => {
     const { doContractCall } = useConnect();
 
-    const defaultFactor = 0.0001e8;
+    const defaultFactor = 1e8;
     const balanceX = 500e8;
     const balanceY = 1000e8; // equivalent to #1 token
     const userPrincipal = userSession.isUserSignedIn() ? userSession.loadUserData().profile.stxAddress.testnet : "";
@@ -26,12 +25,12 @@ const ContractCallCreatePool = () => {
 
     // function createPool() {
     //     doContractCall({
-    //         network: new StacksTestnet(),
+    //         network,
     //         anchorMode: AnchorMode.Any,
-    //         contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+    //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "amm-swap-pool-v1-1",
     //         functionName: "create-pool",
-    //         functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "memegoat"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), standardPrincipalCV("ST1M46QGKG5RS0MRAA0J9FFDP8NMYF710AZDEJ92C"), uintCV(balanceX), uintCV(balanceY)],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "memegoatstx"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), standardPrincipalCV("ST1M46QGKG5RS0MRAA0J9FFDP8NMYF710AZDEJ92C"), uintCV(balanceX), uintCV(balanceY)],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -52,12 +51,12 @@ const ContractCallCreatePool = () => {
     // mocknet https://explorer.hiro.so/txid/${data.txId}?chain=testnet&api=http://localhost:3999
     function addToPool() {
         doContractCall({
-            network: new StacksTestnet(),
+            network,
             anchorMode: AnchorMode.Any,
-            contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+            contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
             contractName: "amm-swap-pool-v1-1",
             functionName: "add-to-position",
-            functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), uintCV(balanceX), someCV(uintCV(balanceY))],
+            functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "memegoatstx"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(balanceX), someCV(uintCV(balanceY))],
             postConditionMode: PostConditionMode.Allow,
             postConditions: [],
             onFinish: (data) => {
@@ -77,9 +76,9 @@ const ContractCallCreatePool = () => {
 
     function getFaucetTokens() {
         doContractCall({
-            network: new StacksTestnet(),
+            network,
             anchorMode: AnchorMode.Any,
-            contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+            contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
             contractName: "memegoat-faucet",
             functionName: "get-faucet-tokens",
             functionArgs: [uintCV(balanceX), uintCV(balanceY), standardPrincipalCV(userPrincipal)],
@@ -100,15 +99,14 @@ const ContractCallCreatePool = () => {
         });
     }
 
-
     // function lockToken() {
     //     doContractCall({
-    //         network: new StacksTestnet(),
+    //         network: new StacksMocknet(),
     //         anchorMode: AnchorMode.Any,
-    //         contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+    //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "goatmeme-locker",
     //         functionName: "lock-token",
-    //         functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), uintCV(lockAmount), uintCV(block), boolCV(true), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), standardPrincipalCV("ST3KH1PSP5PCZTSYEGGKMYQYMBZBQ6BTBCRD2P469")],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "goatmeme"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(lockAmount), uintCV(block), boolCV(true), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "goatmeme"), standardPrincipalCV("ST3KH1PSP5PCZTSYEGGKMYQYMBZBQ6BTBCRD2P469")],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -128,12 +126,12 @@ const ContractCallCreatePool = () => {
 
     // function relockToken() {
     //     doContractCall({
-    //         network: new StacksTestnet(),
+    //         network: new StacksMocknet(),
     //         anchorMode: AnchorMode.Any,
-    //         contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+    //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "goatmeme-locker",
     //         functionName: "relock-token",
-    //         functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), uintCV(0), uintCV(newBlock)],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "goatmeme"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(0), uintCV(newBlock)],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -153,12 +151,12 @@ const ContractCallCreatePool = () => {
 
     // function withdrawToken() {
     //     doContractCall({
-    //         network: new StacksTestnet(),
+    //         network: new StacksMocknet(),
     //         anchorMode: AnchorMode.Any,
-    //         contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+    //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "goatmeme-locker",
     //         functionName: "withdraw-token",
-    //         functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), uintCV(0), uintCV(amountToWithdraw)],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "goatmeme"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(0), uintCV(amountToWithdraw)],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -178,12 +176,12 @@ const ContractCallCreatePool = () => {
 
     // function incrementLock() {
     //     doContractCall({
-    //         network: new StacksTestnet(),
+    //         network: new StacksMocknet(),
     //         anchorMode: AnchorMode.Any,
-    //         contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+    //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "goatmeme-locker",
     //         functionName: "increment-lock",
-    //         functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), uintCV(0), uintCV(incrementlockAmount)],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "goatmeme"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(0), uintCV(incrementlockAmount)],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -203,12 +201,12 @@ const ContractCallCreatePool = () => {
 
     // function splitLock() {
     //     doContractCall({
-    //         network: new StacksTestnet(),
+    //         network: new StacksMocknet(),
     //         anchorMode: AnchorMode.Any,
-    //         contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+    //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "goatmeme-locker",
     //         functionName: "split-lock",
-    //         functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), uintCV(1), uintCV(incrementlockAmount)],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "goatmeme"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(1), uintCV(incrementlockAmount)],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -228,12 +226,12 @@ const ContractCallCreatePool = () => {
 
     // function transferLock() {
     //     doContractCall({
-    //         network: new StacksTestnet(),
+    //         network: new StacksMocknet(),
     //         anchorMode: AnchorMode.Any,
-    //         contractAddress: "STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W",
+    //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "goatmeme-locker",
     //         functionName: "transfer-lock-ownership",
-    //         functionArgs: [contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "goatmeme"), contractPrincipalCV("STHSSNNW4X73WMDB5XZV387WME91DQCNZMEK833W", "dummy"), uintCV(defaultFactor), uintCV(2), standardPrincipalCV("ST1M46QGKG5RS0MRAA0J9FFDP8NMYF710AZDEJ92C")],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "goatmeme"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(2), standardPrincipalCV("ST1M46QGKG5RS0MRAA0J9FFDP8NMYF710AZDEJ92C")],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -252,7 +250,6 @@ const ContractCallCreatePool = () => {
     // }
 
 
-
     if (!userSession.isUserSignedIn()) {
         return null;
     }
@@ -267,7 +264,7 @@ const ContractCallCreatePool = () => {
             </div> */}
             <div>
                 <button onClick={() => getFaucetTokens()}>
-                    Get Dummy Tokens
+                    Get Test Tokens
                 </button>
             </div>
             <div>
