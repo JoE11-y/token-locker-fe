@@ -30,7 +30,7 @@ const ContractCallCreatePool = () => {
     //         contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
     //         contractName: "amm-swap-pool-v1-1",
     //         functionName: "create-pool",
-    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "memegoatstx"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), standardPrincipalCV("ST1M46QGKG5RS0MRAA0J9FFDP8NMYF710AZDEJ92C"), uintCV(balanceX), uintCV(balanceY)],
+    //         functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "memegoat"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), standardPrincipalCV("ST1M46QGKG5RS0MRAA0J9FFDP8NMYF710AZDEJ92C"), uintCV(balanceX), uintCV(balanceY)],
     //         postConditionMode: PostConditionMode.Allow,
     //         postConditions: [],
     //         onFinish: (data) => {
@@ -56,7 +56,7 @@ const ContractCallCreatePool = () => {
             contractAddress: "ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4",
             contractName: "amm-swap-pool-v1-1",
             functionName: "add-to-position",
-            functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "memegoatstx"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(balanceX), someCV(uintCV(balanceY))],
+            functionArgs: [contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "memegoat"), contractPrincipalCV("ST2F4QC563WN0A0949WPH5W1YXVC4M1R46PVV4TQ4", "testSTX"), uintCV(defaultFactor), uintCV(balanceX), someCV(uintCV(balanceY))],
             postConditionMode: PostConditionMode.Allow,
             postConditions: [],
             onFinish: (data) => {
