@@ -5,7 +5,7 @@ import { userSession } from "../user-session";
 function authenticate() {
   showConnect({
     appDetails: {
-      name: "Stacks React Starter",
+      name: "GOATMEME Finance Test App",
       icon: window.location.origin + "/logo512.png",
     },
     redirectTo: "/",
