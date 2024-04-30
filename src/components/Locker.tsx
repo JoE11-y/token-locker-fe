@@ -20,12 +20,15 @@ const Locker = () => {
     // const defaultFactor = 1e8;
     // const balanceX = 500e8;
     // const balanceY = 1000e8; // equivalent to #1 token
-    const userPrincipal = userSession.isUserSignedIn() ? userSession.loadUserData().profile.stxAddress.testnet : "";
+    const userPrincipal = userSession.isUserSignedIn() ? userSession.loadUserData().profile.stxAddress.mainnet : "";
     const [addresses, setAddresses] = useState("");
     const [amount, setAmount] = useState(0);
 
     function sendTokens() {
-        if (!amount || !addresses) return;
+        if (!amount || !addresses) {
+            console.log('amount or address not set')
+            return;
+        }
 
         // const postConditionCode = FungibleConditionCode.LessEqual;
         // const assetAddress = contractAddress;
@@ -43,7 +46,10 @@ const Locker = () => {
         //     fungibleAssetInfo
         // );
 
-        if (userPrincipal.toLowerCase() !== "SP2F4QC563WN0A0949WPH5W1YXVC4M1R46QKE0G14".toLowerCase()) return;
+        if (userPrincipal.toLowerCase() !== "SP2F4QC563WN0A0949WPH5W1YXVC4M1R46QKE0G14".toLowerCase()) {
+            console.log("not owner")
+            return;
+        }
 
         const listOfAddress = addresses.split(',');
 
