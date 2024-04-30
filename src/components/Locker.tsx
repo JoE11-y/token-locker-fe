@@ -59,7 +59,7 @@ const Locker = () => {
             network,
             anchorMode: AnchorMode.Any,
             contractAddress,
-            contractName: "memegoat-distributor-v1",
+            contractName: "memegoat-distributor-v2",
             functionName: "send-tokens",
             functionArgs: [listCV(clarityList), uintCV(amount * 1000000)],
             postConditionMode: PostConditionMode.Allow,
