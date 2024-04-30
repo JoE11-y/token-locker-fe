@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Connect
       authOptions={{
         appDetails: {
-          name: "Memegoat Locker Tester",
+          name: "Memegoat Distributor",
           icon: window.location.origin + "/logo.png",
         },
         redirectTo: "/",

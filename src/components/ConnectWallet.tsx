@@ -5,7 +5,7 @@ import { userSession } from "../user-session";
 function authenticate() {
   showConnect({
     appDetails: {
-      name: "GOATMEME Finance Test App",
+      name: "MEMEGOAT DISTRIBUTOR",
       icon: window.location.origin + "/logo512.png",
     },
     redirectTo: "/",
