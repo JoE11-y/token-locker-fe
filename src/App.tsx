@@ -6,7 +6,9 @@ import Locker from "./components/Locker";
 function App() {
   return (
     <>
-      <h2>MEMEGOAT LOCKER TESTER 🔐</h2>
+      {/* <h2>MEMEGOAT LOCKER TESTER 🔐</h2> */}
+
+      <h2>MEMEGOAT TOKEN DISTRIBUTOR 📤</h2>
 
       <ConnectWallet />
       <Locker />
