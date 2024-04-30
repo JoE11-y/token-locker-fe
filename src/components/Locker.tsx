@@ -6,9 +6,9 @@ import {
     standardPrincipalCV,
     // contractPrincipalCV,
     // someCV,
-    FungibleConditionCode,
-    makeContractFungiblePostCondition,
-    createAssetInfo,
+    // FungibleConditionCode,
+    // makeContractFungiblePostCondition,
+    // createAssetInfo,
     listCV
 } from "@stacks/transactions";
 import { userSession } from "../user-session";
@@ -27,21 +27,21 @@ const Locker = () => {
     function sendTokens() {
         if (!amount || !addresses) return;
 
-        const postConditionCode = FungibleConditionCode.LessEqual;
-        const assetAddress = contractAddress;
-        const assetContractName = 'memegoatstx';
-        const assetName = 'memegoatstx';
-        const fungibleAssetInfo = createAssetInfo(assetAddress, assetContractName, assetName);
-        const contractName = 'memegoat-vault-v1';
-        const postConditionAmount = amount * 1000000;
+        // const postConditionCode = FungibleConditionCode.LessEqual;
+        // const assetAddress = contractAddress;
+        // const assetContractName = 'memegoatstx';
+        // const assetName = 'memegoatstx';
+        // const fungibleAssetInfo = createAssetInfo(assetAddress, assetContractName, assetName);
+        // const contractName = 'memegoat-vault-v1';
+        // const postConditionAmount = amount * 1000000;
 
-        const contractFungiblePostCondition = makeContractFungiblePostCondition(
-            contractAddress,
-            contractName,
-            postConditionCode,
-            postConditionAmount,
-            fungibleAssetInfo
-        );
+        // const contractFungiblePostCondition = makeContractFungiblePostCondition(
+        //     contractAddress,
+        //     contractName,
+        //     postConditionCode,
+        //     postConditionAmount,
+        //     fungibleAssetInfo
+        // );
 
         if (userPrincipal.toLowerCase() !== "SP2F4QC563WN0A0949WPH5W1YXVC4M1R46QKE0G14".toLowerCase()) return;
 
@@ -56,8 +56,8 @@ const Locker = () => {
             contractName: "memegoat-distributor-v1",
             functionName: "send-tokens",
             functionArgs: [listCV(clarityList), uintCV(amount * 1000000)],
-            postConditionMode: PostConditionMode.Deny,
-            postConditions: [contractFungiblePostCondition],
+            postConditionMode: PostConditionMode.Allow,
+            postConditions: [],
             onFinish: (data) => {
                 console.log("onFinish:", data);
                 window
