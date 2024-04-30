@@ -28,7 +28,7 @@ const ConnectWallet = () => {
           Disconnect Wallet
         </button>
         <p>mainnet: {userSession.loadUserData().profile.stxAddress.mainnet}</p>
-        <p>testnet: {userSession.loadUserData().profile.stxAddress.testnet}</p>
+        {/* <p>testnet: {userSession.loadUserData().profile.stxAddress.testnet}</p> */}
       </div>
     );
   }

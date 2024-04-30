@@ -1,6 +1,7 @@
 import "./App.css";
 import ConnectWallet from "./components/ConnectWallet";
-import ContractCallCreatePool from "./components/ContractCallCreatePool";
+// import Launchpad from "./components/Launchpad";
+import Locker from "./components/Locker";
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
       <h2>MEMEGOAT LOCKER TESTER 🔐</h2>
 
       <ConnectWallet />
-      <ContractCallCreatePool />
+      <Locker />
+      <hr />
+      {/* <Launchpad /> */}
     </>
   );
 }
