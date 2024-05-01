@@ -68,7 +68,7 @@ const Locker = () => {
                 console.log("onFinish:", data);
                 window
                     .open(
-                        `https://explorer.hiro.so/txid/${data.txId}?chain=testnet`,
+                        `https://explorer.hiro.so/txid/${data.txId}`,
                         "_blank"
                     )
                     ?.focus();
